@@ -8,11 +8,17 @@ redirect_from:
   - /about.html
 ---
 
+If you can't explain it simply you don't understand it well enough. -- Albert Einstein
+
+海纳百川, 有容乃大. 前途似海, 来日方长. -- 梁启超
+
 About me
 ------
 Changjian Ying is a PhD student at [AIS laboratory](http://www.ais.shinshu-u.ac.jp/), Shinshu Unviersity, Japan. His academic advisor is [Prof. Kimitoshi Yamazaki](http://www.ais.shinshu-u.ac.jp/kimitoshi-yamazaki/).
 
 Ying's current research focuses on the representation and simulation of deformable objects (e.g., rope, cloth, and soft bodies), vision-based robotic manipulation and control of deformable objects, as well as the application of machine learning in both of these areas.
+
+Contact: 21hs252f(at)shinshu-u.ac(dot)jp.
 
 Education
 ------
