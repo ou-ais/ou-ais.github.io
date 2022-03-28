@@ -7,9 +7,9 @@
 
 # Site Settings
 locale                   : "en-JP"
-title                    : "Changjian Ying (应长健)"
+title                    : "YING CHANGJIAN"
 title_separator          : "-"
-name                     : &name "Changjian Ying"
+name                     : &name "Changjian Ying (应长健)"
 description              : &description ""
 url                      : https://ou-ais.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -81,13 +81,13 @@ analytics:
 # Site Author
 author:
   name             : "Changjian Ying"
-  avatar           : "profile.png"
+  avatar           : "me.png"
   bio              : "PhD student at Shinshu University"
   location         : "Nagano, Japan"
   employer         :
   pubmed           : 
   googlescholar    : 
-  email            : 21hs252f(at)shinshu-u.ac(dot)jp
+  email            : 
   researchgate     : 
   uri              :
   bitbucket        :
