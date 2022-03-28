@@ -9,9 +9,9 @@ redirect_from:
 ---
 
 
-If you can't explain it simply you don't understand it well enough. --- Albert Einstein
+"If you can't explain it simply you don't understand it well enough." ---<cite>Albert Einstein</cite>
 
-纵有千古，横有八荒，前途似海，来日方长。 --- 梁启超
+"纵有千古，横有八荒，前途似海，来日方长。" ---<cite>梁启超</cite>
 
 About me
 ------
@@ -28,7 +28,8 @@ Education
 
 Work experience
 ------
-* From 2018 to 2019, he has worked at Nanjing Sharp Electronics Co.
+* From 2018 to 2019, Ying has worked at Nanjing Sharp Electronics Co.
 
 Publication
 ------
+Under construction.
