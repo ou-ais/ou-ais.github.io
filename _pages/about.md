@@ -9,9 +9,9 @@ redirect_from:
 ---
 
 
-If you can't explain it simply you don't understand it well enough. ---- Albert Einstein
+If you can't explain it simply you don't understand it well enough. --- Albert Einstein
 
-纵有千古，横有八荒，前途似海，来日方长。 ---- 梁启超
+纵有千古，横有八荒，前途似海，来日方长。 --- 梁启超
 
 About me
 ------
