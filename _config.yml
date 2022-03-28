@@ -9,7 +9,7 @@
 locale                   : "en-JP"
 title                    : "YING CHANGJIAN"
 title_separator          : "-"
-name                     : &name "Changjian Ying (应长健)"
+name                     : &name "Changjian Ying"
 description              : &description ""
 url                      : https://ou-ais.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
