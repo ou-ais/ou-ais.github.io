@@ -8,9 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-If you can't explain it simply you don't understand it well enough. -- Albert Einstein
+If you can't explain it simply you don't understand it well enough. ---- Albert Einstein
 
-海纳百川, 有容乃大. 前途似海, 来日方长. -- 梁启超
+纵有千古，横有八荒，前途似海，来日方长。 ---- 梁启超
 
 About me
 ------
