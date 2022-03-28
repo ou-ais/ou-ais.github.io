@@ -1,12 +1,13 @@
 ---
 permalink: /
-title: "PhD student Changjian Ying"
+title: "PhD student Changjian Ying (应长健)"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
+
 
 If you can't explain it simply you don't understand it well enough. ---- Albert Einstein
 
