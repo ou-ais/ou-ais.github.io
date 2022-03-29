@@ -1,7 +1,7 @@
 ---
 title: 'Hello world!'
-date: 2022-03-28
-permalink: /posts/2012/08/hello-world/
+publish: 2022-03-28
+permalink: /posts/2022/03/hello-world/
 tags:
   - helloWord
 ---
@@ -9,5 +9,6 @@ tags:
 The palest ink is better than the strongest memory! So let's write down some research notes here so that we can quickly find a solution when we face the same or similar problems.
 
 Write some useful research notes
-======
+
 Under construction.
+------
