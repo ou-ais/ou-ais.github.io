@@ -59,14 +59,33 @@ while not rospy.is_shutdown():
 rospy.spin()
 ```
 ## 5. Topics
-Topic is continuous data flow (e.g. sensor data or robot state). Data might be published and subscribed at any time. It can be one-to-one or, one-to-many dependence. (Imagine in the _converyor belt sushi_, the topic is likes a conveyor belt that keeps moving and anyone can take one or more sushi from it.)
+Topic is continuous data flow (e.g. sensor data or robot state). Data might be published and subscribed at any time. It can be one-to-one or, one-to-many dependence. (Imagine in the _conveyor belt sushi_, the topic is likes a conveyor belt that keeps moving and anyone can take one or more sushi from it.)
 
-### Message 
-A message is a simple data structure which sended in ros topics. Nodes communicate with each other by publish messages to topics. (Like the sushi converied on the belt.)
+### 5.1 Message 
+A message is a simple data structure which sended in ros topics. Nodes communicate with each other by publish messages to topics. (Like the sushi convey on the belt.)
 
-There are many messsage types in ROS, such as [geometry_msgs](http://wiki.ros.org/geometry_msgs?distro=melodic), [sensor_msgs](http://wiki.ros.org/sensor_msgs?distro=melodic) and [moveit.msgs](http://wiki.ros.org/moveit_msgs) etc.
+There are many message types in ROS, such as [geometry_msgs](http://wiki.ros.org/geometry_msgs?distro=melodic), [sensor_msgs](http://wiki.ros.org/sensor_msgs?distro=melodic) and [moveit.msgs](http://wiki.ros.org/moveit_msgs) etc.
 
-### Publish
+* `msg`: msg files are simple text files that describe the field of a ROS message.
+Here is an example of msg:
+```
+# message_type                   message_name
+  Header                           header
+  string                           frame_id
+geometry_msgs.PoseWithCovariance pose
+```
+* `srv`: srv files are compose of two part: a request and response.
+```
+# (request) type    name
+            int64   a
+            int64   b
+---
+# (response)type    name
+            int64   sum
+```
+See also about how to create and use msg & srv from [here](http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv). 
+
+### 5.2 Publish
 You can call `rospy.Publisher('topic_name', message_type, queue_size)` to publish a message. In which, `queue_size` is the size of outgoing message queue used for publishing (Saved how many message waiting for sending). [Here](http://wiki.ros.org/rospy/Overview/Publishers%20and%20Subscribers) provides some tips for choosing a good queue_size:
 
 * Set _queue_size=rate_, if you just send one message at a fixed rate.
@@ -85,7 +104,7 @@ while not rospy.is_shutdown():
    pub.publish('hello world')
    r.sleep()
 ``` 
-### Subscribe
+### 5.3 Subscribe
 Example for subscribe from single topic to callback:
 ```python
 import rospy
@@ -104,67 +123,25 @@ def listener():
 if __name__ == '__main__':
     listener()
 ```
-Suppose you need to subscribe from **multiple synchronized topics** (e.g. RGB image and camera infomation) in single callback, [message_filers](http://wiki.ros.org/message_filters) can be used:
-```python
-import message_filters
-from sensor_msgs.msg import Image, CameraInfo
 
-def callback(image, camera_info):
-  # do some work ...
+Suppose you need to subscribe from **multiple synchronized topics** (e.g. RGB image and camera information) in single callback, [message_filers](http://wiki.ros.org/message_filters) can be used, for example: [`message_filters.py`](https://github.com/ou-ais/ros-python-example/blob/main/message_filters.py).
 
-image_sub = message_filters.Subscriber('image', Image)
-info_sub = message_filters.Subscriber('camera_info', CameraInfo)
-
-ts = message_filters.TimeSynchronizer([image_sub, info_sub], queze_size=10)
-'''
-Alternatively, approximately synchronizes messages by their timestamps, you can use another function like this: 
-ts = message_filters.ApproximateTimeSynchronizer([mode_sub, penalty_sub], queze_size=10, slop=0.1, allow_headerless=True)
-where argument 'slop' defines the delay (in seconds) which message can be synchronized.
-'''
-ts.registerCallback(callback)
-rospy.spin()
-```
-### Using numpy with rospy
+### * Using numpy with rospy
 We can use `rospy.numpy_msg` module with the `numpy_msg()` wrapper, which allows Nodes to publish/subscribe messages directly into numpy arrays.
 
-The publish code probably look something like this:
-```python
-import rospy
-from rospy.numpy_msg import numpy_msg
-from rospy_tutorials.msg import Floats # float32[] data
-import numpy
+The publish code probably look something like this: [`ros_numpy_talker.py`](https://github.com/ou-ais/ros-python-example/blob/main/ros_numpy_talker.py)
 
-def talker():
-    pub = rospy.Publisher('floats', numpy_msg(Floats),queue_size=10)
-    rospy.init_node('talker', anonymous=True)
-    r = rospy.Rate(10) # 10hz
-    while not rospy.is_shutdown():
-        Array = numpy.array([1.0, 2.1, 3.2, 4.3, 5.4, 6.5], dtype=numpy.float32)
-        pub.publish(Array)
-        r.sleep()
-
-if __name__ == '__main__':
-    talker()
-```
-Similarly, the subscribe code will looks like:
-```python
-import rospy
-from rospy_tutorials.msg import Floats
-from rospy.numpy_msg import numpy_msg
-
-def callback(data):
-    print rospy.get_name(), 'I heard %s"%str(data.data)
-    # do some work ...
-
-def listener():
-    rospy.init_node('listener')
-    rospy.Subscriber('floats', numpy_msg(Floats), callback)
-    rospy.spin()
-
-if __name__ == '__main__':
-    listener()
-```
+Similarly, the subscribe code will looks like: [`ros_numpy_listener.py`](https://github.com/ou-ais/ros-python-example/blob/main/ros_numpy_listener.py)
 
 ## 6. Services
+Services are another way that exchange messages between each node. Services allow nodes to send a **request** and receive a **response**. The big difference between services and topics is that services only work (e.g. sending messages) when you call it, whereas topics are continuously sending messages until you shut down it. (Again, imagine services are like _waiters_ in the conveyor belt sushi, who will bring the prepared sushi to you when you order.)
 
+Refer to [`add_two_ints_server.py`](https://github.com/ou-ais/ros-python-example/blob/main/script/add_two_ints_server.py) and [`add_two_ints_client.py`](https://github.com/ou-ais/ros-python-example/blob/main/script/add_two_ints_client.py) for how to write a service and client and how to configure your `CMakeLists.txt` and `package.xml` files in a ROS package.
+
+## 7. Actions
+In some case, however, if the service takes a long time to execute, the user might want the ability to **cancel** the request during execution or get **feedback** about how the request is progressing. The `actionlib` can implement these for you.
+
+An action specification defines the _Goal_, _Feedback_ and _Result_ messages with which clients and servers communicated.
+
+See [5. .action File](http://wiki.ros.org/actionlib) for some information about how to create `.action` file, and how to use it in your ros package.
 
