@@ -1,3 +1,12 @@
+---
+title: 'ROS python tutorial (beginner-level)'
+publish: 2022-04-04
+permalink: /posts/2022/04/rospy-tutorial-beginner/
+tags: 
+  - ROS-Python
+---
+
+
 ROS Python Tutorial (beginner level)
 ======
 ## 1. Create & Build workspace
