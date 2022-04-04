@@ -6,6 +6,7 @@ tags:
   - ROS-Python
 ---
 
+Here are some commanders and examples for ros python tutorial beginner level. Main reference is [roswiki](http://wiki.ros.org/)
 
 ROS Python Tutorial (beginner level)
 ======
