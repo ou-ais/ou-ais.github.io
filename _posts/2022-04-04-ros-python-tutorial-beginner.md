@@ -3,7 +3,7 @@ title: 'ROS python tutorial (beginner-level)'
 publish: 2022-04-04
 permalink: /posts/2022/04/rospy-tutorial-beginner/
 tags: 
-  - ROS-Python
+  - ROS
 ---
 
 Here are some commanders and examples for ros python tutorial beginner level. Main reference is [roswiki](http://wiki.ros.org/)
