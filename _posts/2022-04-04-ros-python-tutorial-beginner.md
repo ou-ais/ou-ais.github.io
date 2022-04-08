@@ -6,10 +6,10 @@ tags:
   - ROS
 ---
 
-Here are some commanders and examples for ros python tutorial beginner level. Main reference is [roswiki](http://wiki.ros.org/)
+Here are some commanders and examples for ros python tutorial beginner level. 
 
-ROS Python Tutorial (beginner level)
-======
+Main reference is [roswiki](http://wiki.ros.org/)
+
 ## 1. Create & Build workspace
 
 Create a ROS workspace:
@@ -134,14 +134,39 @@ if __name__ == '__main__':
     listener()
 ```
 
-Suppose you need to subscribe from **multiple synchronized topics** (e.g. RGB image and camera information) in single callback, [message_filers](http://wiki.ros.org/message_filters) can be used, for example: [`message_filters.py`](https://github.com/ou-ais/ros-python-example/blob/main/message_filters.py).
+Suppose you need to subscribe from **multiple synchronized topics** (e.g. RGB image and camera information) in single callback, [message_filers](http://wiki.ros.org/message_filters) can be used. Message filter is a time synchronizer, which takes in messages of different types from multiple sources, and outputs them only if it has received a message with the same or approximate timestamp.
+
+Example used _ApproximateTimeSynchronizer_:
+```bash
+#!/usr/bin/env python
+
+import rospy
+import message_filters
+from sensor_msgs.msg import Image, CameraInfo
+
+def callback(image, camera_info):
+    rospy.loginfo('I heard image: % s \n, caminfo: %s \n', image, camera_info)
+    # do some work ...
+
+image_sub = message_filters.Subscriber('image', Image)
+info_sub = message_filters.Subscriber('camera_info', CameraInfo)
+
+ts = message_filters.TimeSynchronizer([image_sub, info_sub], queze_size=10)
+'''
+Alternatively, approximately synchronizes messages by their timestamps, you can use another function like this: 
+ts = message_filters.ApproximateTimeSynchronizer([mode_sub, penalty_sub], queze_size=10, slop=0.1, allow_headerless=True)
+where argument 'slop' defines the delay (in seconds) which message can be synchronized.
+'''
+ts.registerCallback(callback)
+rospy.spin()
+```
 
 ### * Using numpy with rospy
 We can use `rospy.numpy_msg` module with the `numpy_msg()` wrapper, which allows Nodes to publish/subscribe messages directly into numpy arrays.
 
-The publish code probably look something like this: [`ros_numpy_talker.py`](https://github.com/ou-ais/ros-python-example/blob/main/ros_numpy_talker.py)
+The publish code probably look something like this: [`ros_numpy_talker.py`](https://github.com/ou-ais/ros-python-example/blob/main/script/ros_numpy_talker.py)
 
-Similarly, the subscribe code will looks like: [`ros_numpy_listener.py`](https://github.com/ou-ais/ros-python-example/blob/main/ros_numpy_listener.py)
+Similarly, the subscribe code will looks like: [`ros_numpy_listener.py`](https://github.com/ou-ais/ros-python-example/blob/main/script/ros_numpy_listener.py)
 
 ## 6. Services
 Services are another way that exchange messages between each node. Services allow nodes to send a **request** and receive a **response**. The big difference between services and topics is that services only work (e.g. sending messages) when you call it, whereas topics are continuously sending messages until you shut down it. (Again, imagine services are like _waiters_ in the conveyor belt sushi, who will bring the prepared sushi to you when you order.)
