@@ -70,9 +70,8 @@ if __name__ == '__main__':
 ```
 You can also use `static_transform_publisher` command-line to publish static transform quickly instead of writing a program.
 ```bash
-$ static_transform_publisher x y z yaw pitch roll header_frame_id child_frame_id 
-# Or use quaternion
-static_transform_publisher x y z qx qy qz qw header_frame_id child_frame_id 
+# use quaternion
+$ rosrun tf2_ros static_transform_publisher x y z qx qy qz qw header_frame_id child_frame_id 
 ```
 Also, you can write a roslaunch file for setting static transforms.
 ```
